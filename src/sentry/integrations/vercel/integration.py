@@ -16,7 +16,7 @@ from sentry.integrations import (
 from sentry.pipeline import NestedPipelineView
 from sentry.identity.pipeline import IdentityProviderPipeline
 from sentry.utils.http import absolute_uri
-from sentry.models import Project
+from sentry.models import Project, ProjectKey
 from sentry.utils.compat import map
 from sentry.shared_integrations.exceptions import IntegrationError, ApiError
 
@@ -87,6 +87,73 @@ class VercelIntegration(IntegrationInstallation):
         ]
 
         return fields
+
+    def update_organization_config(self, mappings):
+        # mappings = {"project_mappings": [[sentry_project_id, vercel_project_id]]}
+
+        metadata = self.model.metadata
+        vercel_client = VercelClient(metadata["access_token"], metadata.get("team_id"))
+        sentry_project_id = mappings["project_mappings"][0][0]
+        vercel_project_id = mappings["project_mappings"][0][1]
+        org = Project.objects.filter(id=sentry_project_id).get()
+        sentry_project = Project.objects.filter(id=sentry_project_id).get()
+        sentry_project_dsn = ProjectKey.objects.filter(project=sentry_project).get()
+
+        data = {
+            "name": "SENTRY_ORG_test",
+            "value": org.slug,
+        }
+        sentry_org_secret = self.create_secret(vercel_client, vercel_project_id, data)
+
+        sentry_org_data = {"key": data["name"], "value": sentry_org_secret, "target": "production"}
+
+        self.create_env_var(vercel_client, vercel_project_id, sentry_org_data)
+
+        data["name"] = "SENTRY_PROJECT"
+        data["value"] = sentry_project.slug
+        sentry_project_secret = self.create_secret(vercel_client, vercel_project_id, data)
+
+        sentry_project_data = {
+            "key": data["name"],
+            "value": sentry_project_secret,
+            "target": "production",
+        }
+        self.create_env_var(vercel_client, vercel_project_id, sentry_project_data)
+
+        data["name"] = "NEXT_PUBLIC_SENTRY_DSN"
+        data["value"] = sentry_project_dsn.get_dsn(public=True)
+        sentry_dsn_secret = self.create_secret(vercel_client, vercel_project_id, data)
+
+        sentry_dsn_data = {"key": data["name"], "value": sentry_dsn_secret, "target": "production"}
+        self.create_env_var(vercel_client, vercel_project_id, sentry_dsn_data)
+
+    def get_env_vars(self, client, vercel_project_id):
+        get_env_var_url = "/v5/projects/%s/env"
+        return client.get(path=get_env_var_url % vercel_project_id)
+
+    def already_exists(self, client, vercel_project_id, data):
+        exists = False
+        existing_env_vars = self.get_env_vars(client, vercel_project_id)["envs"]
+        for env_var in existing_env_vars:
+            if env_var["key"] == data["name"]:
+                exists = True
+                break
+        return exists
+
+    def create_secret(self, client, vercel_project_id, data):
+        secrets_url = "/v2/now/secrets"
+        if not self.already_exists(client, vercel_project_id, data):
+            try:
+                client.post(path=secrets_url, data=data)["uid"]
+            except ApiError:
+                raise
+
+    def create_env_var(self, client, vercel_project_id, data):
+        env_var_url = "/v4/projects/%s/env"
+        try:
+            client.post(path=env_var_url % vercel_project_id, data=data)
+        except ApiError:
+            raise
 
 
 class VercelIntegrationProvider(IntegrationProvider):
