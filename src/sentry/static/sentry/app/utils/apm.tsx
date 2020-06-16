@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser';
 import * as Router from 'react-router';
 import {createMemoryHistory} from 'history';
 import set from 'lodash/set';
 
+import * as Sentry from '@sentry/react';
 import getRouteStringFromRoutes from 'app/utils/getRouteStringFromRoutes';
 
 const createLocation = createMemoryHistory().createLocation;
