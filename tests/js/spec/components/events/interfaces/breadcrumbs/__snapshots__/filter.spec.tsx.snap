@@ -241,7 +241,7 @@ exports[`Filter default render 1`] = `
                         type="button"
                       >
                         <forwardRef<Button>
-                          className="e1sx99c0 css-1qtgjoa-StyledButton-StyledDropdownButton eenpoef1"
+                          className="e1sx99c0 css-fa3aic-StyledButton-StyledDropdownButton eenpoef1"
                           hasDarkBorderBottomColor={true}
                           hideBottomBorder={true}
                           isOpen={false}
@@ -260,7 +260,7 @@ exports[`Filter default render 1`] = `
                         >
                           <Button
                             align="center"
-                            className="e1sx99c0 css-1qtgjoa-StyledButton-StyledDropdownButton eenpoef1"
+                            className="e1sx99c0 css-fa3aic-StyledButton-StyledDropdownButton eenpoef1"
                             disabled={false}
                             forwardRef={[Function]}
                             hasDarkBorderBottomColor={true}
@@ -281,7 +281,7 @@ exports[`Filter default render 1`] = `
                           >
                             <StyledButton
                               aria-disabled={false}
-                              className="e1sx99c0 css-1qtgjoa-StyledButton-StyledDropdownButton eenpoef1"
+                              className="e1sx99c0 css-fa3aic-StyledButton-StyledDropdownButton eenpoef1"
                               disabled={false}
                               forwardRef={[Function]}
                               hasDarkBorderBottomColor={true}
@@ -303,7 +303,7 @@ exports[`Filter default render 1`] = `
                             >
                               <Component
                                 aria-disabled={false}
-                                className="e1sx99c0 eenpoef1 css-15fvpih-StyledButton-StyledButton-StyledDropdownButton edwq9my0"
+                                className="e1sx99c0 eenpoef1 css-1u4jty5-StyledButton-StyledButton-StyledDropdownButton edwq9my0"
                                 forwardRef={[Function]}
                                 onClick={[Function]}
                                 onKeyDown={[Function]}
@@ -320,7 +320,7 @@ exports[`Filter default render 1`] = `
                               >
                                 <button
                                   aria-disabled={false}
-                                  className="e1sx99c0 eenpoef1 css-15fvpih-StyledButton-StyledButton-StyledDropdownButton edwq9my0"
+                                  className="e1sx99c0 eenpoef1 css-1u4jty5-StyledButton-StyledButton-StyledDropdownButton edwq9my0"
                                   onClick={[Function]}
                                   onKeyDown={[Function]}
                                   onMouseEnter={[Function]}
@@ -477,9 +477,6 @@ exports[`Filter default render 1`] = `
                     "blue300": "#7199DD",
                     "blue400": "#3D74DB",
                     "blue500": "#194591",
-                    "borderDark": "#D1CAD8",
-                    "borderLight": "#E2DBE8",
-                    "borderLighter": "#f9f6fd",
                     "borderRadius": "4px",
                     "borderRadiusBottom": "0 0 4px 4px",
                     "borderRadiusTop": "4px 4px 0 0",
@@ -493,13 +490,13 @@ exports[`Filter default render 1`] = `
                     "button": Object {
                       "borderRadius": "3px",
                       "danger": Object {
-                        "background": undefined,
+                        "background": "#FA4747",
                         "backgroundActive": "#bf2a1d",
                         "border": "#bf2a1d",
                         "borderActive": "#7d1c13",
                         "color": "#FFFFFF",
                         "colorActive": "#FFFFFF",
-                        "focusShadow": "rgba(0, 0, 0, 0.5)",
+                        "focusShadow": "rgba(250, 71, 71, 0.5)",
                       },
                       "default": Object {
                         "background": "#FFFFFF",
@@ -508,7 +505,7 @@ exports[`Filter default render 1`] = `
                         "borderActive": "#c9c0d1",
                         "color": "#2f2936",
                         "colorActive": "#161319",
-                        "focusShadow": "rgba(226, 219, 232, 0.5)",
+                        "focusShadow": "rgba(231, 225, 236, 0.5)",
                       },
                       "disabled": Object {
                         "background": "#FFFFFF",
@@ -722,7 +719,7 @@ exports[`Filter default render 1`] = `
                 width="240px"
               >
                 <div
-                  className="css-1qx6109-DropdownBubble-Content e1r8p2re2"
+                  className="css-1adc7cr-DropdownBubble-Content e1r8p2re2"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                   onMouseLeave={[Function]}
@@ -735,7 +732,7 @@ exports[`Filter default render 1`] = `
                   >
                     <Wrapper>
                       <div
-                        className="css-1sftep-Wrapper ej4ytze0"
+                        className="css-3q7twp-Wrapper ej4ytze0"
                       >
                         <CheckboxWrapper
                           onClick={[Function]}
@@ -943,7 +940,7 @@ exports[`Filter default render 1`] = `
                     <div>
                       <Header>
                         <div
-                          className="css-z546ki-Header e1cujor50"
+                          className="css-19x9s3h-Header e1cujor50"
                         >
                           Type
                         </div>
@@ -959,7 +956,7 @@ exports[`Filter default render 1`] = `
                             onClick={[Function]}
                           >
                             <li
-                              className="css-5ewcs4-ListItem e1cujor52"
+                              className="css-1y2halr-ListItem e1cujor52"
                               onClick={[Function]}
                             >
                               <Memo()
@@ -1075,7 +1072,7 @@ exports[`Filter default render 1`] = `
                             onClick={[Function]}
                           >
                             <li
-                              className="css-5ewcs4-ListItem e1cujor52"
+                              className="css-1y2halr-ListItem e1cujor52"
                               onClick={[Function]}
                             >
                               <Memo()
@@ -1182,7 +1179,7 @@ exports[`Filter default render 1`] = `
                             onClick={[Function]}
                           >
                             <li
-                              className="css-5ewcs4-ListItem e1cujor52"
+                              className="css-1y2halr-ListItem e1cujor52"
                               onClick={[Function]}
                             >
                               <Memo()
@@ -1292,7 +1289,7 @@ exports[`Filter default render 1`] = `
                             onClick={[Function]}
                           >
                             <li
-                              className="css-5ewcs4-ListItem e1cujor52"
+                              className="css-1y2halr-ListItem e1cujor52"
                               onClick={[Function]}
                             >
                               <Memo()
@@ -1402,7 +1399,7 @@ exports[`Filter default render 1`] = `
                             onClick={[Function]}
                           >
                             <li
-                              className="css-5ewcs4-ListItem e1cujor52"
+                              className="css-1y2halr-ListItem e1cujor52"
                               onClick={[Function]}
                             >
                               <Memo()
@@ -1509,7 +1506,7 @@ exports[`Filter default render 1`] = `
                             onClick={[Function]}
                           >
                             <li
-                              className="css-5ewcs4-ListItem e1cujor52"
+                              className="css-1y2halr-ListItem e1cujor52"
                               onClick={[Function]}
                             >
                               <Memo()
@@ -1640,7 +1637,7 @@ exports[`Filter default render 1`] = `
                     <div>
                       <Header>
                         <div
-                          className="css-z546ki-Header e1cujor50"
+                          className="css-19x9s3h-Header e1cujor50"
                         >
                           Level
                         </div>
@@ -1656,7 +1653,7 @@ exports[`Filter default render 1`] = `
                             onClick={[Function]}
                           >
                             <li
-                              className="css-5ewcs4-ListItem e1cujor52"
+                              className="css-1y2halr-ListItem e1cujor52"
                               onClick={[Function]}
                             >
                               <Memo()
@@ -1742,7 +1739,7 @@ exports[`Filter default render 1`] = `
                             onClick={[Function]}
                           >
                             <li
-                              className="css-5ewcs4-ListItem e1cujor52"
+                              className="css-1y2halr-ListItem e1cujor52"
                               onClick={[Function]}
                             >
                               <Memo()
