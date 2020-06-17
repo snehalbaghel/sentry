@@ -17,7 +17,7 @@ type Props = {
 function UserMisery(props: Props) {
   const {bars, barHeight, miserableUsers, miseryLimit, totalUsers} = props;
 
-  const palette = new Array(bars).fill(theme.purpleDarkest);
+  const palette = new Array(bars).fill(theme.purple500);
   const score = Math.floor((miserableUsers / Math.max(totalUsers, 1)) * palette.length);
   const miseryPercentage = ((100 * miserableUsers) / Math.max(totalUsers, 1)).toFixed(2);
 
