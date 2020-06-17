@@ -4,8 +4,8 @@ import * as ReactRouter from 'react-router';
 import {Location} from 'history';
 import omit from 'lodash/omit';
 import isEqual from 'lodash/isEqual';
-
 import * as Sentry from '@sentry/react';
+
 import {Organization, GlobalSelection} from 'app/types';
 import {PageContent} from 'app/styles/organization';
 import {Client} from 'app/api';
