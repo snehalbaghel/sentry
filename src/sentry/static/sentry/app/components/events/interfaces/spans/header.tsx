@@ -476,7 +476,7 @@ const TimeAxis = styled('div')`
   position: absolute;
   left: 0;
   bottom: 0;
-  border-top: 1px solid ${p => p.theme.borderDark};
+  border-top: 1px solid ${p => p.theme.gray400};
   height: ${TIME_AXIS_HEIGHT}px;
   background-color: ${p => p.theme.white};
   color: ${p => p.theme.gray500};
@@ -521,7 +521,7 @@ const TickText = styled('span')<{align: TickAlignment}>`
 const TickMarker = styled('div')`
   width: 1px;
   height: 4px;
-  background-color: ${p => p.theme.borderDark};
+  background-color: ${p => p.theme.gray400};
   position: absolute;
   top: 0;
   left: 0;
@@ -570,7 +570,7 @@ const HeaderContainer = styled('div')`
   top: 0;
   z-index: ${zIndex.minimapContainer};
   background-color: ${p => p.theme.white};
-  border-bottom: 1px solid ${p => p.theme.borderDark};
+  border-bottom: 1px solid ${p => p.theme.gray400};
   height: ${MINIMAP_HEIGHT + TIME_AXIS_HEIGHT + 1}px;
 `;
 
@@ -631,7 +631,7 @@ const CursorGuide = styled('div')`
   position: absolute;
   top: 0;
   width: 1px;
-  background-color: ${p => p.theme.red};
+  background-color: ${p => p.theme.red400};
   transform: translateX(-50%);
 `;
 

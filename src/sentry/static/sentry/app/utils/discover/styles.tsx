@@ -65,7 +65,7 @@ export const Side = styled('div')`
 `;
 
 export const HeaderBox = styled(ContentBox)`
-  border-bottom: 1px solid ${p => p.theme.borderDark};
+  border-bottom: 1px solid ${p => p.theme.gray400};
   grid-row-gap: ${space(1)};
   background-color: transparent;
   flex-grow: 0;

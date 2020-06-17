@@ -141,7 +141,7 @@ const ReleaseHeader = ({location, orgId, release, project, releaseMeta}: Props) 
 
 const Header = styled('div')`
   padding: ${space(2)} ${space(4)} 0;
-  border-bottom: 1px solid ${p => p.theme.borderDark};
+  border-bottom: 1px solid ${p => p.theme.gray400};
 `;
 
 const Layout = styled('div')`

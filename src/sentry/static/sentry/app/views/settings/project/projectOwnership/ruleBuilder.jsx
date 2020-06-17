@@ -198,7 +198,7 @@ const Candidates = styled('div')`
 `;
 
 const TypeHint = styled('div')`
-  color: ${p => p.theme.borderDark};
+  color: ${p => p.theme.gray400};
 `;
 
 const StyledTextOverflow = styled(TextOverflow)`
@@ -207,7 +207,7 @@ const StyledTextOverflow = styled(TextOverflow)`
 
 const RuleCandidate = styled('div')`
   font-family: ${p => p.theme.text.familyMono};
-  border: 1px solid ${p => p.theme.borderDark};
+  border: 1px solid ${p => p.theme.gray400};
   background-color: #f8fafd;
   padding-left: 5px;
   margin-bottom: 3px;
@@ -218,7 +218,7 @@ const RuleCandidate = styled('div')`
 `;
 
 const StyledIconAdd = styled(IconAdd)`
-  color: ${p => p.theme.borderDark};
+  color: ${p => p.theme.gray400};
   margin-right: 5px;
   flex-shrink: 0;
 `;
@@ -250,7 +250,7 @@ const BuilderTagNameInput = styled(Input)`
 `;
 
 const Divider = styled(InlineSvg)`
-  color: ${p => p.theme.borderDark};
+  color: ${p => p.theme.gray400};
   flex-shrink: 0;
   margin-right: 5px;
 `;
