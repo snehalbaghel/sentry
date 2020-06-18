@@ -42,7 +42,7 @@ export const HeaderContent = styled('div')`
  */
 export const Header = styled('div')`
   background-color: transparent;
-  border-bottom: 1px solid ${p => p.theme.borderDark};
+  border-bottom: 1px solid ${p => p.theme.gray400};
   padding: ${space(2)} ${space(4)};
   margin: 0;
   flex-grow: 0;
