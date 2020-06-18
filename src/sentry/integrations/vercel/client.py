@@ -45,4 +45,18 @@ class VercelClient(ApiClient):
             "events": ["deployment"],
         }
         response = self.post(self.WEBHOOK_URL, data=data)
+    def get_env_vars(self, vercel_project_id):
+        return self.get(self.GET_ENV_VAR_URL % vercel_project_id)
+
+    def get_secret(self, name):
+        return self.get(self.GET_SECRET_URL % name.lower())["uid"]
+
+    def create_secret(self, vercel_project_id, name, value):
+        data = {"name": name, "value": value}
+        response = self.post(self.SECRETS_URL, data=data)["uid"]
+        return response
+
+    def create_env_variable(self, vercel_project_id, key, value):
+        data = {"key": key, "value": value, "target": "production"}
+        response = self.post(self.ENV_VAR_URL % vercel_project_id, data=data)
         return response
