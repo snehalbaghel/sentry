@@ -135,6 +135,7 @@ class VercelIntegration(IntegrationInstallation):
         except ApiError as e:
             if e.code == 404:
                 return None
+            raise
 
     def env_var_already_exists(self, client, vercel_project_id, name):
         return any(

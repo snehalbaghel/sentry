@@ -13,6 +13,10 @@ class VercelClient(ApiClient):
     USER_URL = "/www/user"
     PROJECTS_URL = "/v4/projects/"
     WEBHOOK_URL = "/v1/integrations/webhooks"
+    ENV_VAR_URL = "/v4/projects/%s/env"
+    GET_ENV_VAR_URL = "/v5/projects/%s/env"
+    SECRETS_URL = "/v2/now/secrets"
+    GET_SECRET_URL = "/v3/now/secrets/%s"
 
     def __init__(self, access_token, team_id=None):
         super(VercelClient, self).__init__()
@@ -45,6 +49,8 @@ class VercelClient(ApiClient):
             "events": ["deployment"],
         }
         response = self.post(self.WEBHOOK_URL, data=data)
+        return response
+
     def get_env_vars(self, vercel_project_id):
         return self.get(self.GET_ENV_VAR_URL % vercel_project_id)
 
