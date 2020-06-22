@@ -15,9 +15,7 @@ class Add extends DialogManager<Props, State> {
   async handleSave() {
     const {onSubmitSuccess, closeModal, savedRelays, orgSlug, api} = this.props;
 
-    const trustedRelays = [...savedRelays, this.state.values].map(trustedRelay =>
-      JSON.stringify(trustedRelay)
-    );
+    const trustedRelays = [...savedRelays, this.state.values];
 
     try {
       const response = await api.requestPromise(`/organizations/${orgSlug}/`, {

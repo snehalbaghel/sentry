@@ -34,9 +34,9 @@ class Edit extends DialogManager<Props, State> {
 
     const trustedRelays = savedRelays.map(relay => {
       if (relay.publicKey === updatedRelay.publicKey) {
-        return JSON.stringify(updatedRelay);
+        return updatedRelay;
       }
-      return JSON.stringify(relay);
+      return relay;
     });
 
     try {

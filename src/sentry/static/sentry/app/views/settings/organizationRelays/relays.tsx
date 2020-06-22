@@ -31,39 +31,9 @@ type Props = {
   organization: Organization;
 } & RouteComponentProps<{orgId: string}, {}>;
 
-type State = AsyncComponent['state'] & {
-  relays: Array<Relay>;
-  openAddDialog: boolean;
-  editRelay?: Relay;
-};
+type State = AsyncComponent['state'];
 
 class Relays extends AsyncComponent<Props, State> {
-  getDefaultState() {
-    return {
-      ...super.getDefaultState(),
-      relays: [],
-    };
-  }
-
-  componentDidUpdate() {
-    if (this.state?.data?.trustedRelays?.length > 0 && this.state.relays.length === 0) {
-      this.setRelays(this.state.data.trustedRelays);
-    }
-  }
-
-  setRelays = (trustedRelays?: Array<string>) => {
-    if (!trustedRelays) {
-      return;
-    }
-
-    this.setState({
-      relays: this.parseTrustedRelays(trustedRelays),
-    });
-  };
-
-  parseTrustedRelays = (trustedRelays: Array<string>) =>
-    trustedRelays.map(trustedRelay => JSON.parse(trustedRelay));
-
   getEndpoints(): ReturnType<AsyncComponent['getEndpoints']> {
     return [['data', `/organizations/${this.props.organization.slug}/`]];
   }
@@ -82,7 +52,7 @@ class Relays extends AsyncComponent<Props, State> {
         }
       );
       addSuccessMessage('Successfully deleted relay public key');
-      this.setRelays(response?.trustedRelays);
+      // this.setRelays(response?.trustedRelays);
     } catch {
       addErrorMessage('An unknown error occurred while deleting relay public key');
     }
@@ -90,7 +60,7 @@ class Relays extends AsyncComponent<Props, State> {
 
   successfullySaved = (response: Organization, successMessage: string) => {
     addSuccessMessage(successMessage);
-    this.setRelays(response?.trustedRelays);
+    //this.setRelays(response?.trustedRelays);
   };
 
   handleOpenEditDialog = (publicKey: Relay['publicKey']) => () => {
@@ -129,7 +99,8 @@ class Relays extends AsyncComponent<Props, State> {
   };
 
   renderBody() {
-    const {relays} = this.state;
+    const {data} = this.state;
+    const relays = data.trustedRelays;
 
     return (
       <React.Fragment>
