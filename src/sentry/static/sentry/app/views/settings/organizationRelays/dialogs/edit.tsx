@@ -1,7 +1,7 @@
 import {t} from 'app/locale';
 import {addErrorMessage} from 'app/actionCreators/indicator';
+import {Relay} from 'app/types';
 
-import {Relay} from '../types';
 import DialogManager from './dialogManager';
 
 type Props = {

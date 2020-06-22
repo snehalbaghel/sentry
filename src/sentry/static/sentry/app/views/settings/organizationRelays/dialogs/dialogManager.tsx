@@ -5,11 +5,10 @@ import isEqual from 'lodash/isEqual';
 import {Client} from 'app/api';
 import {t} from 'app/locale';
 import {ModalRenderProps} from 'app/actionCreators/modal';
-import {Organization} from 'app/types';
+import {Organization, Relay} from 'app/types';
 
 import Form from './form';
 import Dialog from './dialog';
-import {Relay} from '../types';
 
 type FormProps = React.ComponentProps<typeof Form>;
 type Values = FormProps['values'];

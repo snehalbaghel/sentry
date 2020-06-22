@@ -2,13 +2,14 @@ import React from 'react';
 import {RouteComponentProps} from 'react-router/lib/Router';
 import styled from '@emotion/styled';
 import {ClassNames} from '@emotion/core';
+import {isEqual} from 'lodash';
 
 import {openModal} from 'app/actionCreators/modal';
 import {PanelTable} from 'app/components/panels';
 import {t, tct} from 'app/locale';
 import AsyncComponent from 'app/components/asyncComponent';
 import SettingsPageHeader from 'app/views/settings/components/settingsPageHeader';
-import {Organization} from 'app/types';
+import {Organization, Relay} from 'app/types';
 import ExternalLink from 'app/components/links/externalLink';
 import Button from 'app/components/button';
 import {addErrorMessage, addSuccessMessage} from 'app/actionCreators/indicator';
@@ -21,8 +22,8 @@ import space from 'app/styles/space';
 import {defined} from 'app/utils';
 import Tooltip from 'app/components/tooltip';
 import QuestionTooltip from 'app/components/questionTooltip';
+import overflowEllipsis from 'app/styles/overflowEllipsis';
 
-import {Relay} from './types';
 import {Add, Edit} from './dialogs';
 
 const RELAY_DOCS_LINK = 'https://getsentry.github.io/relay/';
@@ -31,17 +32,40 @@ type Props = {
   organization: Organization;
 } & RouteComponentProps<{orgId: string}, {}>;
 
-type State = AsyncComponent['state'];
+type State = AsyncComponent['state'] & {
+  relays: Array<Relay>;
+};
 
 class Relays extends AsyncComponent<Props, State> {
+  getDefaultState() {
+    return {
+      ...super.getDefaultState(),
+      relays: [],
+    };
+  }
+
   getEndpoints(): ReturnType<AsyncComponent['getEndpoints']> {
     return [['data', `/organizations/${this.props.organization.slug}/`]];
   }
 
+  componentDidUpdate(_prevProps: Props, prevState: State) {
+    if (
+      !isEqual(this.state?.data, prevState?.data) &&
+      this.state?.data?.trustedRelays?.length > 0 &&
+      this.state.relays.length === 0
+    ) {
+      this.setRelays(this.state.data.trustedRelays);
+    }
+  }
+
+  setRelays = (trustedRelays: Array<Relay>) => {
+    this.setState({relays: trustedRelays});
+  };
+
   handleDelete = (publicKey: Relay['publicKey']) => async () => {
-    const trustedRelays = this.state.relays
-      .filter(relay => relay.publicKey !== publicKey)
-      .map(trustedRelay => JSON.stringify(trustedRelay));
+    const {relays} = this.state;
+
+    const trustedRelays = relays.filter(relay => relay.publicKey !== publicKey);
 
     try {
       const response = await this.api.requestPromise(
@@ -52,7 +76,7 @@ class Relays extends AsyncComponent<Props, State> {
         }
       );
       addSuccessMessage('Successfully deleted relay public key');
-      // this.setRelays(response?.trustedRelays);
+      this.setRelays(response.trustedRelays);
     } catch {
       addErrorMessage('An unknown error occurred while deleting relay public key');
     }
@@ -60,7 +84,7 @@ class Relays extends AsyncComponent<Props, State> {
 
   successfullySaved = (response: Organization, successMessage: string) => {
     addSuccessMessage(successMessage);
-    //this.setRelays(response?.trustedRelays);
+    this.setRelays(response.trustedRelays);
   };
 
   handleOpenEditDialog = (publicKey: Relay['publicKey']) => () => {
@@ -99,8 +123,7 @@ class Relays extends AsyncComponent<Props, State> {
   };
 
   renderBody() {
-    const {data} = this.state;
-    const relays = data.trustedRelays;
+    const {relays} = this.state;
 
     return (
       <React.Fragment>
@@ -139,7 +162,7 @@ class Relays extends AsyncComponent<Props, State> {
               `}
             >
               {relays.map(({publicKey: key, name, created, description}) => {
-                const maskedKey = '*******************';
+                const maskedKey = '*************************';
                 return (
                   <React.Fragment key={key}>
                     {description ? (
@@ -217,6 +240,7 @@ const Key = styled(Text)<{content: string}>`
     left: 0;
     content: '${p => p.content}';
     visibility: visible;
+    ${overflowEllipsis};
   }
 `;
 
